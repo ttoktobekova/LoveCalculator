@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LoveCalculator</string>
+    <string name="first_name">First name</string>
+    <string name="second_name">Second name</string>
+    <string name="resultSpacial">❤️Result❤️</string>
+    <string name="results">Result</string>
+    <string name="sname">sname</string>
+    <string name="fname">fname</string>
+    <string name="ready">Готово</string>
+    <string name="love_calculator">LOVE CALCULATOR</string>
+</resources>

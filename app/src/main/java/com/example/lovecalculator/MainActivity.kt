@@ -2,20 +2,18 @@ package com.example.lovecalculator
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lovecalculator.databinding.ActivityMainBinding
 import com.example.lovecalculator.models.LoveModel
-import com.example.lovecalculator.models.RetrofitService
-import com.example.lovecalculator.models.SecondActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.lovecalculator.mvp.LoveView
+import com.example.lovecalculator.mvp.Presenter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LoveView {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private val presenter = Presenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,23 +23,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun initialize() = with(binding) {
         btnResult.setOnClickListener {
-            RetrofitService.api.getLove(
-                firstName = etFname.text.toString(),
-                secondName = etSname.text.toString()
-            ).enqueue(object : Callback<LoveModel> {
-                override fun onResponse(p0: Call<LoveModel>, responce: Response<LoveModel>) {
-                    val result = responce.body()
-                    val intent = Intent(this@MainActivity, SecondActivity::class.java)
-                    intent.putExtra("key", result)
-                    startActivity(intent)
-                }
-
-                override fun onFailure(p0: Call<LoveModel>, error: Throwable) {
-                    Log.e("lalala", "onFailure: ${error.message}")
-                }
-
-            })
+            presenter.getLoveData(
+                etFname.text.toString(),
+                etSname.text.toString()
+            )
         }
+
     }
+
+    override fun showResult(loveModel: LoveModel) {
+        val intent = Intent(this, SecondActivity::class.java).apply {
+            putExtra(Presenter.KEY_DATA, loveModel)
+        }
+        startActivity(intent)
+    }
+
+    override fun showError(message: Int) {
+        Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show()
+    }
+
 
 }

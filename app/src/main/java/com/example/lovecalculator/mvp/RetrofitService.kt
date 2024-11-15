@@ -1,5 +1,6 @@
-package com.example.lovecalculator.models
+package com.example.lovecalculator.mvp
 
+import com.example.lovecalculator.models.LoveApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,4 +10,5 @@ object RetrofitService {
         .addConverterFactory(GsonConverterFactory.create()).build()
 
     val api = retrofit.create(LoveApi::class.java)
+
 }

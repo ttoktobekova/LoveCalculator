@@ -1,4 +1,4 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun getData() = with(binding) {
-        val resultData = intent.getParcelableExtra<LoveModel>(KEY_DATA)
+        val resultData = intent.getParcelableExtra<LoveModel>("loveModel")
         resultData?.let { data ->
             tvFname.text = data.firstName
             tvSname.text = data.secondName

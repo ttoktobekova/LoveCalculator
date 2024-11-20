@@ -1,11 +1,7 @@
 package com.example.lovecalculator.mvp
 
-import android.content.Context
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import com.example.lovecalculator.R
-import com.example.lovecalculator.SecondActivity
 import com.example.lovecalculator.models.LoveModel
 import retrofit2.Call
 import retrofit2.Callback

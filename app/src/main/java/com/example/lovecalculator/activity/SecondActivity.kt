@@ -1,8 +1,10 @@
-package com.example.lovecalculator.models
+package com.example.lovecalculator.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lovecalculator.databinding.ActivitySecondBinding
+import com.example.lovecalculator.models.LoveModel
+import com.example.lovecalculator.mvp.Presenter.Companion.KEY_DATA
 
 class SecondActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -16,7 +18,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     private fun getData() = with(binding) {
-        val resultData = intent.getSerializableExtra("key") as? LoveModel
+        val resultData = intent.getParcelableExtra<LoveModel>("loveModel")
         resultData?.let { data ->
             tvFname.text = data.firstName
             tvSname.text = data.secondName

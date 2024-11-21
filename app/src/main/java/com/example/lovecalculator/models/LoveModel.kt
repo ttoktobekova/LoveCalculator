@@ -1,8 +1,10 @@
 package com.example.lovecalculator.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class LoveModel(
     @SerializedName("fname")
     var firstName: String,
@@ -10,4 +12,4 @@ data class LoveModel(
     val secondName: String,
     val percentage: String,
     val result: String
-):Serializable
+) : Parcelable

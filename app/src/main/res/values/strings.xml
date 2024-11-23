@@ -9,4 +9,10 @@
     <string name="ready">Готово</string>
     <string name="love_calculator">LOVE CALCULATOR</string>
     <string name="error_retrieving_result">Error retrieving result</string>
+    <string name="please_enter_both_names">Please enter both names</string>
+    <string name="error_fetching_data">Error fetching data</string>
+    <string name="onresponse">onResponse: Ошибка получение данных</string>
+    <string name="no_data">No data</string>
+    <string name="mistake_not_data">Mistake not data</string>
+    <string name="mistake">"Mistake %1$s "</string>
 </resources>

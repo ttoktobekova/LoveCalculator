@@ -2,13 +2,17 @@ package com.example.lovecalculator.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.lovecalculator.R
 import com.example.lovecalculator.databinding.ActivityMainBinding
 import com.example.lovecalculator.mvvm.ViewModelLoveCalculator
+import com.example.lovecalculator.utils.KEY
+import com.example.lovecalculator.utils.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity() : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -19,29 +23,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initialize()
+        setupListener()
+
     }
 
-    private fun initialize() = with(binding) {
+    private fun setupListener() = with(binding) {
         btnResult.setOnClickListener {
             val firstName = etFname.text.toString().trim()
             val secondName = etSname.text.toString().trim()
-            viewModel.getPercentage(firstName, secondName)
+
             if (firstName.isNotEmpty() && secondName.isNotEmpty()) {
-                viewModel.getPercentage(firstName, secondName)
+                viewModel.getPercentage(firstName, secondName, this@MainActivity)
             } else {
-                Toast.makeText(this@MainActivity, "Please enter both names", Toast.LENGTH_SHORT)
-                    .show()
+                showToast(getString(R.string.error_fetching_data))
             }
         }
 
         viewModel.loveLiveData.observe(this@MainActivity) { result ->
             if (result != null) {
                 val intent = Intent(this@MainActivity, SecondActivity::class.java)
-                intent.putExtra("loveModel", result)
+                intent.putExtra(KEY.KEY_DATA, result)
                 startActivity(intent)
             } else {
-                Toast.makeText(this@MainActivity, "Error fetching data", Toast.LENGTH_SHORT).show()
+                showToast(getString(R.string.error_fetching_data))
+
             }
         }
     }

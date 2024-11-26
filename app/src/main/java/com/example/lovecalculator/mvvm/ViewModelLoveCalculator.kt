@@ -37,6 +37,7 @@ class ViewModelLoveCalculator @Inject constructor(private val apiService: LoveAp
                         }
                     }
 
+
                     override fun onFailure(p0: Call<LoveModel>, t: Throwable) {
                         context.showToast(context.getString(R.string.mistake, t.message))
                     }

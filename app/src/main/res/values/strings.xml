@@ -15,4 +15,10 @@
     <string name="no_data">No data</string>
     <string name="mistake_not_data">Mistake not data</string>
     <string name="mistake">"Mistake %1$s "</string>
+    <string name="history">History</string>
+    <string name="history_love">History Love</string>
+    <string name="second_names">Second Name</string>
+    <string name="first_names">First Name</string>
+    <string name="plus">+</string>
+    <string name="text_result">Text result</string>
 </resources>

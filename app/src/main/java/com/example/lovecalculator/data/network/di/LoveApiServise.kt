@@ -1,12 +1,13 @@
-package com.example.lovecalculator.models
+package com.example.lovecalculator.data.network.di
 
+import com.example.lovecalculator.models.LoveModel
 import com.example.lovecalculator.utils.KEY
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-interface LoveApi {
+interface LoveApiServise {
 
     @GET("getPercentage")
     fun getPercentage(
